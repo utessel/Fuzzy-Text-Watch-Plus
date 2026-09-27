@@ -26,9 +26,9 @@
 // Vertical distance in pixels between lines
 #define ROW_HEIGHT 50
 // Vertical distance in pixels between lines
-#define ROW_OFFSET 37
+#define ROW_OFFSET 45
 // Vertical distance in pixels between small lines
-#define ROW_OFFSET_SMALL 24
+#define ROW_OFFSET_SMALL 30
 
 // Pull top line up by this many pixels
 #define TOP_MARGIN 10
@@ -39,7 +39,7 @@
 #define TEXT_ALIGN GTextAlignmentCenter
 
 // The time it takes for a layer to slide in or out.
-#define ANIMATION_DURATION 400
+#define ANIMATION_DURATION 300
 // Delay between the layers animations, from top to bottom
 #define ANIMATION_STAGGER_TIME 150
 // Delay from the start of the current layer going out until the next layer slides in
