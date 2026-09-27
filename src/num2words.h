@@ -16,8 +16,8 @@
 #endif 
 
 typedef struct {
-	const int const hours;
-	const int const pentaminutes;
+	const int hours;
+	const int pentaminutes;
 	const char* const phrase;
 } Exception;
 
@@ -27,7 +27,7 @@ typedef struct {
 	const char* const greetings[4];
 	const char* const connection_lost;
 	const int number_of_exceptions;
-	const Exception const exceptions[];
+	const Exception exceptions[];
 } Language;
 
 void time_to_words(int hours, int minutes, char* words, size_t length);

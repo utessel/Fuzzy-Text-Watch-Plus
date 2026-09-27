@@ -6,11 +6,16 @@ Pebble.addEventListener('ready', function() {
 });
 
 Pebble.addEventListener('showConfiguration', function() {
-  var url = 'http://www.matb.se/pebble-config/config/index.html?v=' + version;
+  var url = 'https://utessel.github.io/Fuzzy-Text-Watch-Plus/config/index.html?v=' + version;
   //var url = 'file:///Users/mattias/gitroot/Fuzzy-Text-watch-Plus/config/index.html?v=' + version;
 
   if (!hasColor()) { // Black n white
     url = url + "&bw";
+  }
+
+  var savedConfig = localStorage.getItem('fuzzy_text_config');
+  if (savedConfig) {
+    url = url + "&config=" + encodeURIComponent(savedConfig);
   }
 
   console.log('Showing configuration page: ' + url);
@@ -19,8 +24,15 @@ Pebble.addEventListener('showConfiguration', function() {
 });
 
 Pebble.addEventListener('webviewclosed', function(e) {
+  if (!e || !e.response || e.response === 'CANCELLED' || e.response === 'false' || e.response === '') {
+    console.log('Configuration cancelled or closed without saving');
+    return;
+  }
+
   var configData = JSON.parse(decodeURIComponent(e.response));
   console.log('Configuration page returned: ' + JSON.stringify(configData));
+
+  localStorage.setItem('fuzzy_text_config', JSON.stringify(configData));
 
   var dict = {};
   // Inverse BW colors

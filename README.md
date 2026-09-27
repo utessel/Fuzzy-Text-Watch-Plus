@@ -1,5 +1,15 @@
 Fuzzy Text watch Plus
 ========================
+
+> **Fork Notice**: This repository is a fork of [Sarastro72/Fuzzy-Text-Watch-Plus](https://github.com/Sarastro72/Fuzzy-Text-Watch-Plus) (originally created by Mattias Bäcklund, based on [PebbleTextWatch](https://github.com/wearewip/PebbleTextWatch)).
+>
+> **Updates in this fork:**
+> - Updated build compatibility for modern Rebble Pebble SDK (Python 3 / SDK 4.33+).
+> - Fixed compiler errors with modern GCC (`duplicate-decl-specifier`).
+> - Restored setup/configuration page via GitHub Pages.
+> - Persistent settings memory: configuration values are preserved and pre-filled when reopening settings.
+> - Default language set to German (Western).
+
 This is a watch face for the [Pebble smartwatch](http://www.getpebble.com). It is based on the
 [PebbleTextWatch](https://github.com/wearewip/PebbleTextWatch) by waerewip
 

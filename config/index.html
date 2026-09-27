@@ -321,18 +321,56 @@
       console.log(keys[i] + ": " + available_languages[keys[i]]);
       languageChoice.options[languageChoice.options.length] = new Option(keys[i], available_languages[keys[i]]);
     }
-    languageChoice.value = 1;
+    var savedConfig = null;
+    var configParam = getQueryParam('config');
+    if (configParam) {
+      try {
+        savedConfig = JSON.parse(configParam);
+      } catch (e) {
+        console.log('Error parsing config parameter: ' + e);
+      }
+    }
 
-    // Load any previously saved configuration, if available
-    if(localStorage['inverse_colors']) inverseColorCheckbox.checked = JSON.parse(localStorage['inverse_colors']);
-    if(localStorage['background_color']) backgroundColorPicker.value = localStorage['background_color'];
-    if(localStorage['regular_color']) regularColorPicker.value = localStorage['regular_color'];
-    if(localStorage['bold_color']) boldColorPicker.value = localStorage['bold_color'];
-    if(localStorage['language']) languageChoice.value = localStorage['language'];
-    if(localStorage['offset']) offsetChoice.value = localStorage['offset'];
-    if(localStorage['message_time']) messageTime.value = localStorage['message_time'];
-    if(localStorage['gesture']) gesture.value = localStorage['gesture'];
-    if(localStorage['bt_notification']) btLostNotification.value = localStorage['bt_notification'];
+    function getOption(key, defaultVal) {
+      if (savedConfig && savedConfig[key] !== undefined && savedConfig[key] !== null) {
+        return savedConfig[key];
+      }
+      if (localStorage[key] !== undefined && localStorage[key] !== null) {
+        return localStorage[key];
+      }
+      return defaultVal;
+    }
+
+    // Default language is Deutsch (w) = 8
+    languageChoice.value = getOption('language', 8);
+
+    // Inverse colors
+    var inv = getOption('inverse_colors', false);
+    inverseColorCheckbox.checked = (inv === true || inv === 'true' || inv === 1 || inv === '1');
+
+    // Colors
+    backgroundColorPicker.value = getOption('background_color', '#000000');
+    regularColorPicker.value = getOption('regular_color', '#FFFFFF');
+    boldColorPicker.value = getOption('bold_color', '#FFFFFF');
+
+    // Other settings
+    offsetChoice.value = getOption('offset', 180);
+    messageTime.value = getOption('message_time', 3);
+    gesture.value = getOption('gesture', 4);
+    btLostNotification.value = getOption('bt_notification', 2);
+
+    function updateColorPreviews() {
+      if (window.$) {
+        $('.item-color').each(function() {
+          var val = $(this).val();
+          if (val) {
+            $(this).parent().find('.value').css('background-color', val.replace(/^0x/, '#'));
+          }
+        });
+      }
+    }
+    updateColorPreviews();
+    setTimeout(updateColorPreviews, 100);
 
   })();
   </script>
