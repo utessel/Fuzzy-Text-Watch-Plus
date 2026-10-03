@@ -6,7 +6,7 @@ Pebble.addEventListener('ready', function() {
 });
 
 Pebble.addEventListener('showConfiguration', function() {
-  var url = 'https://utessel.github.io/Fuzzy-Text-Watch-Plus/config/index.html?v=' + version;
+  var url = 'https://utessel.github.io/SDF-Fuzzy-Text/config/index.html?v=' + version;
 
   if (!hasColor()) { // Black n white
     url = url + "&bw";

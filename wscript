@@ -15,6 +15,7 @@ def options(ctx):
 
 def configure(ctx):
     ctx.load('pebble_sdk')
+    ctx.env.BUNDLE_NAME = 'SDF-Fuzzy-Text.pbw'
 
     # Configure C++ compiler for each Pebble platform
     for p in ctx.env.TARGET_PLATFORMS:

@@ -79,7 +79,7 @@ pebble emu-app-config --emulator emery
 ## 📐 Architecture Overview
 
 ```
-Fuzzy-Text-Watch-Plus/
+SDF-Fuzzy-Text/
 ├── SDFLib/
 │   ├── ttf2sdf.py         # Analytical Cardano cubic Bézier SDF generator
 │   ├── sdf_config.ini     # Font parameters & character subset definition
