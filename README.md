@@ -2,6 +2,10 @@
 
 A modern, high-performance fuzzy text watchface for the Pebble smartwatch platform (RebbleOS), featuring an ultra-crisp 4-bit Signed Distance Field (SDF) font engine, 2D affine matrix animation transformations, and multi-language support.
 
+<p align="center">
+  <img src="screenshots/animation.gif" alt="SDF Fuzzy Text Animation" width="200"/>
+</p>
+
 ---
 
 ## 📜 History & Attribution
@@ -35,7 +39,7 @@ Version 4.0 is a complete, ground-up rewrite in modern C++14:
     - Italian (*"nove meno un quarto"*)
     - Norwegian (*"fem på halv tre"*)
     - Swedish (*"kvart i nio"*)
-  - Context-aware automatic line wrapping, hyphenation, and dynamic vertical centering (1 to 4 lines).
+  - Context-aware automatic line wrapping, hyphenation, and dynamic vertical centering (1 to 3 lines).
 - **Interactive Gestures & Alerts**:
   - **Date Display**: Wrist flick or shake gesture reveals exact digital time, weekday, and date.
   - **Bluetooth Alert**: Optional buzz and localized alert message when phone disconnects (*"Wo ist dein Handy?"*, *"Where is your phone?"*).

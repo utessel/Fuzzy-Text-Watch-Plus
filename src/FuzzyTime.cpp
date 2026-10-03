@@ -40,25 +40,30 @@ static int get_fuzzy_time_swedish(int h, int next_h, int p, TimeLine lines[4])
 	switch (p)
 	{
 		case 0:
-			lines[0] = { "klockan är", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "klockan", false };
+			lines[1] = { "är", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 1:
-			lines[0] = { "fem över", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "fem", false };
+			lines[1] = { "över", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 2:
-			lines[0] = { "tio över", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "tio", false };
+			lines[1] = { "över", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 3:
-			lines[0] = { "kvart över", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "kvart", false };
+			lines[1] = { "över", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 4:
-			lines[0] = { "tjugo över", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "tjugo", false };
+			lines[1] = { "över", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 5:
 			lines[0] = { "fem i", false };
 			lines[1] = { "halv", false };
@@ -74,21 +79,25 @@ static int get_fuzzy_time_swedish(int h, int next_h, int p, TimeLine lines[4])
 			lines[2] = { hours[next_h], true };
 			return 3;
 		case 8:
-			lines[0] = { "tjugo i", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "tjugo", false };
+			lines[1] = { "i", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		case 9:
-			lines[0] = { "kvart i", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "kvart", false };
+			lines[1] = { "i", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		case 10:
-			lines[0] = { "tio i", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "tio", false };
+			lines[1] = { "i", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		case 11:
-			lines[0] = { "fem i", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "fem", false };
+			lines[1] = { "i", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		default:
 			return 0;
 	}
@@ -109,51 +118,60 @@ static int get_fuzzy_time_english(int h, int next_h, int p, TimeLine lines[4])
 			lines[1] = { "o'clock", false };
 			return 2;
 		case 1:
-			lines[0] = { "five past", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "five", false };
+			lines[1] = { "past", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 2:
-			lines[0] = { "ten past", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "ten", false };
+			lines[1] = { "past", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 3:
-			lines[0] = { "quarter past", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "quarter", false };
+			lines[1] = { "past", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 4:
-			lines[0] = { "twenty past", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "twenty", false };
+			lines[1] = { "past", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 5:
 			lines[0] = { "twenty five", false };
 			lines[1] = { "past", false };
 			lines[2] = { hours[h], true };
 			return 3;
 		case 6:
-			lines[0] = { "half past", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "half", false };
+			lines[1] = { "past", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 7:
 			lines[0] = { "twenty five", false };
 			lines[1] = { "to", false };
 			lines[2] = { hours[next_h], true };
 			return 3;
 		case 8:
-			lines[0] = { "twenty to", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "twenty", false };
+			lines[1] = { "to", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		case 9:
-			lines[0] = { "quarter to", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "quarter", false };
+			lines[1] = { "to", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		case 10:
-			lines[0] = { "ten to", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "ten", false };
+			lines[1] = { "to", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		case 11:
-			lines[0] = { "five to", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "five", false };
+			lines[1] = { "to", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		default:
 			return 0;
 	}
@@ -170,21 +188,25 @@ static int get_fuzzy_time_norwegian(int h, int next_h, int p, TimeLine lines[4])
 	switch (p)
 	{
 		case 0:
-			lines[0] = { "klokken er", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "klokken", false };
+			lines[1] = { "er", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 1:
-			lines[0] = { "fem over", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "fem", false };
+			lines[1] = { "over", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 2:
-			lines[0] = { "ti over", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "ti", false };
+			lines[1] = { "over", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 3:
-			lines[0] = { "kvart over", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "kvart", false };
+			lines[1] = { "over", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 4:
 			lines[0] = { "ti på", false };
 			lines[1] = { "halv", false };
@@ -210,17 +232,20 @@ static int get_fuzzy_time_norwegian(int h, int next_h, int p, TimeLine lines[4])
 			lines[2] = { hours[next_h], true };
 			return 3;
 		case 9:
-			lines[0] = { "kvart på", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "kvart", false };
+			lines[1] = { "på", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		case 10:
-			lines[0] = { "ti på", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "ti", false };
+			lines[1] = { "på", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		case 11:
-			lines[0] = { "fem på", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "fem", false };
+			lines[1] = { "på", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		default:
 			return 0;
 	}
@@ -241,17 +266,20 @@ static int get_fuzzy_time_dutch(int h, int next_h, int p, TimeLine lines[4])
 			lines[1] = { "uur", false };
 			return 2;
 		case 1:
-			lines[0] = { "vijf over", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "vijf", false };
+			lines[1] = { "over", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 2:
-			lines[0] = { "tien over", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "tien", false };
+			lines[1] = { "over", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 3:
-			lines[0] = { "kwart over", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "kwart", false };
+			lines[1] = { "over", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 4:
 			lines[0] = { "tien voor", false };
 			lines[1] = { "half", false };
@@ -277,17 +305,20 @@ static int get_fuzzy_time_dutch(int h, int next_h, int p, TimeLine lines[4])
 			lines[2] = { hours[next_h], true };
 			return 3;
 		case 9:
-			lines[0] = { "kwart voor", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "kwart", false };
+			lines[1] = { "voor", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		case 10:
-			lines[0] = { "tien voor", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "tien", false };
+			lines[1] = { "voor", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		case 11:
-			lines[0] = { "vijf voor", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "vijf", false };
+			lines[1] = { "voor", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		default:
 			return 0;
 	}
@@ -309,48 +340,59 @@ static int get_fuzzy_time_italian(int h, int next_h, int p, TimeLine lines[4])
 			return 2;
 		case 1:
 			lines[0] = { hours[h], true };
-			lines[1] = { "e cinque", false };
-			return 2;
+			lines[1] = { "e", false };
+			lines[2] = { "cinque", false };
+			return 3;
 		case 2:
 			lines[0] = { hours[h], true };
-			lines[1] = { "e dieci", false };
-			return 2;
+			lines[1] = { "e", false };
+			lines[2] = { "dieci", false };
+			return 3;
 		case 3:
 			lines[0] = { hours[h], true };
-			lines[1] = { "e un quarto", false };
-			return 2;
+			lines[1] = { "e un", false };
+			lines[2] = { "quarto", false };
+			return 3;
 		case 4:
 			lines[0] = { hours[h], true };
-			lines[1] = { "e venti", false };
-			return 2;
+			lines[1] = { "e", false };
+			lines[2] = { "venti", false };
+			return 3;
 		case 5:
 			lines[0] = { hours[h], true };
-			lines[1] = { "e venticinque", false };
-			return 2;
+			lines[1] = { "e", false };
+			lines[2] = { "venticinque", false };
+			return 3;
 		case 6:
 			lines[0] = { hours[h], true };
-			lines[1] = { "e mezza", false };
-			return 2;
+			lines[1] = { "e", false };
+			lines[2] = { "mezza", false };
+			return 3;
 		case 7:
 			lines[0] = { hours[h], true };
-			lines[1] = { "e trentacinque", false };
-			return 2;
+			lines[1] = { "e", false };
+			lines[2] = { "trentacinque", false };
+			return 3;
 		case 8:
 			lines[0] = { hours[next_h], true };
-			lines[1] = { "meno venti", false };
-			return 2;
+			lines[1] = { "meno", false };
+			lines[2] = { "venti", false };
+			return 3;
 		case 9:
 			lines[0] = { hours[next_h], true };
-			lines[1] = { "meno un quarto", false };
-			return 2;
+			lines[1] = { "meno un", false };
+			lines[2] = { "quarto", false };
+			return 3;
 		case 10:
 			lines[0] = { hours[next_h], true };
-			lines[1] = { "meno dieci", false };
-			return 2;
+			lines[1] = { "meno", false };
+			lines[2] = { "dieci", false };
+			return 3;
 		case 11:
 			lines[0] = { hours[next_h], true };
-			lines[1] = { "meno cinque", false };
-			return 2;
+			lines[1] = { "meno", false };
+			lines[2] = { "cinque", false };
+			return 3;
 		default:
 			return 0;
 	}
@@ -372,48 +414,59 @@ static int get_fuzzy_time_spanish(int h, int next_h, int p, TimeLine lines[4])
 			return 2;
 		case 1:
 			lines[0] = { hours[h], true };
-			lines[1] = { "y cinco", false };
-			return 2;
+			lines[1] = { "y", false };
+			lines[2] = { "cinco", false };
+			return 3;
 		case 2:
 			lines[0] = { hours[h], true };
-			lines[1] = { "y diez", false };
-			return 2;
+			lines[1] = { "y", false };
+			lines[2] = { "diez", false };
+			return 3;
 		case 3:
 			lines[0] = { hours[h], true };
-			lines[1] = { "y cuarto", false };
-			return 2;
+			lines[1] = { "y", false };
+			lines[2] = { "cuarto", false };
+			return 3;
 		case 4:
 			lines[0] = { hours[h], true };
-			lines[1] = { "y veinte", false };
-			return 2;
+			lines[1] = { "y", false };
+			lines[2] = { "veinte", false };
+			return 3;
 		case 5:
 			lines[0] = { hours[h], true };
-			lines[1] = { "y veinticinco", false };
-			return 2;
+			lines[1] = { "y", false };
+			lines[2] = { "veinticinco", false };
+			return 3;
 		case 6:
 			lines[0] = { hours[h], true };
-			lines[1] = { "y media", false };
-			return 2;
+			lines[1] = { "y", false };
+			lines[2] = { "media", false };
+			return 3;
 		case 7:
 			lines[0] = { hours[next_h], true };
-			lines[1] = { "menos veinticinco", false };
-			return 2;
+			lines[1] = { "menos", false };
+			lines[2] = { "veinticinco", false };
+			return 3;
 		case 8:
 			lines[0] = { hours[next_h], true };
-			lines[1] = { "menos veinte", false };
-			return 2;
+			lines[1] = { "menos", false };
+			lines[2] = { "veinte", false };
+			return 3;
 		case 9:
 			lines[0] = { hours[next_h], true };
-			lines[1] = { "menos cuarto", false };
-			return 2;
+			lines[1] = { "menos", false };
+			lines[2] = { "cuarto", false };
+			return 3;
 		case 10:
 			lines[0] = { hours[next_h], true };
-			lines[1] = { "menos diez", false };
-			return 2;
+			lines[1] = { "menos", false };
+			lines[2] = { "diez", false };
+			return 3;
 		case 11:
 			lines[0] = { hours[next_h], true };
-			lines[1] = { "menos cinco", false };
-			return 2;
+			lines[1] = { "menos", false };
+			lines[2] = { "cinco", false };
+			return 3;
 		default:
 			return 0;
 	}
@@ -434,13 +487,15 @@ static int get_fuzzy_time_german(int h, int next_h, int p, bool is_eastern, Time
 			lines[1] = { "Uhr", false };
 			return 2;
 		case 1:
-			lines[0] = { "fünf nach", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "fünf", false };
+			lines[1] = { "nach", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 2:
-			lines[0] = { "zehn nach", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "zehn", false };
+			lines[1] = { "nach", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 3:
 			if (is_eastern)
 			{
@@ -450,14 +505,16 @@ static int get_fuzzy_time_german(int h, int next_h, int p, bool is_eastern, Time
 			}
 			else
 			{
-				lines[0] = { "viertel nach", false };
-				lines[1] = { hours[h], true };
-				return 2;
+				lines[0] = { "viertel", false };
+				lines[1] = { "nach", false };
+				lines[2] = { hours[h], true };
+				return 3;
 			}
 		case 4:
-			lines[0] = { "zwanzig nach", false };
-			lines[1] = { hours[h], true };
-			return 2;
+			lines[0] = { "zwanzig", false };
+			lines[1] = { "nach", false };
+			lines[2] = { hours[h], true };
+			return 3;
 		case 5:
 			lines[0] = { "fünf vor", false };
 			lines[1] = { "halb", false };
@@ -473,9 +530,10 @@ static int get_fuzzy_time_german(int h, int next_h, int p, bool is_eastern, Time
 			lines[2] = { hours[next_h], true };
 			return 3;
 		case 8:
-			lines[0] = { "zwanzig vor", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "zwanzig", false };
+			lines[1] = { "vor", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		case 9:
 			if (is_eastern)
 			{
@@ -485,18 +543,21 @@ static int get_fuzzy_time_german(int h, int next_h, int p, bool is_eastern, Time
 			}
 			else
 			{
-				lines[0] = { "viertel vor", false };
-				lines[1] = { hours[next_h], true };
-				return 2;
+				lines[0] = { "viertel", false };
+				lines[1] = { "vor", false };
+				lines[2] = { hours[next_h], true };
+				return 3;
 			}
 		case 10:
-			lines[0] = { "zehn vor", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "zehn", false };
+			lines[1] = { "vor", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		case 11:
-			lines[0] = { "fünf vor", false };
-			lines[1] = { hours[next_h], true };
-			return 2;
+			lines[0] = { "fünf", false };
+			lines[1] = { "vor", false };
+			lines[2] = { hours[next_h], true };
+			return 3;
 		default:
 			return 0;
 	}
