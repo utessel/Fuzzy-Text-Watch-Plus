@@ -16,8 +16,49 @@ def options(ctx):
 def configure(ctx):
     ctx.load('pebble_sdk')
 
+    # Configure C++ compiler for each Pebble platform
+    for p in ctx.env.TARGET_PLATFORMS:
+        ctx.set_env(ctx.all_envs[p])
+        ctx.env.CXX = 'arm-none-eabi-g++'
+        ctx.load('gxx')
+
+        # C++ embedded flags
+        cxxflags = [
+            '-std=c++14',
+            '-fno-exceptions',
+            '-fno-rtti',
+            '-D_TIME_H_',
+            '-Dtime_t=long',
+            '-mcpu=cortex-m3',
+            '-mthumb',
+            '-ffunction-sections',
+            '-fdata-sections',
+            '-fPIE',
+            '-Os',
+            '-Wall',
+            '-Wextra',
+            '-Wno-unused-parameter',
+            '-Wno-unused-variable'
+        ]
+        ctx.env.append_value('CXXFLAGS', cxxflags)
+        ctx.env.append_value('INCLUDES', [os.path.abspath('SDFLib')])
+
 def build(ctx):
     ctx.load('pebble_sdk')
+
+    import types
+    from waflib.Tools import cxx
+    import pebble_sdk_common
+    from waflib.TaskGen import feature, after_method
+
+    pebble_scan = pebble_sdk_common._wrap_c_preproc_scan
+
+    @feature('c')
+    @after_method('process_source')
+    def fix_pebble_h_cxx_dependencies(task_gen):
+        for task in task_gen.tasks:
+            if type(task) == cxx.cxx:
+                task.scan = types.MethodType(pebble_scan, task)
 
     build_worker = os.path.exists('worker_src')
     binaries = []
@@ -25,15 +66,20 @@ def build(ctx):
     for p in ctx.env.TARGET_PLATFORMS:
         ctx.set_env(ctx.all_envs[p])
         ctx.set_group(ctx.env.PLATFORM_NAME)
-        app_elf='{}/pebble-app.elf'.format(ctx.env.BUILD_DIR)
-        ctx.pbl_program(source=ctx.path.ant_glob('src/**/*.c'),
-        target=app_elf)
+
+        sources = ctx.path.ant_glob('src/**/*.c') + \
+                  ctx.path.ant_glob('src/**/*.cpp') + \
+                  ctx.path.ant_glob('SDFLib/**/*.cpp') + \
+                  ctx.path.ant_glob('SDFLib/**/*.c')
+
+        app_elf = '{}/pebble-app.elf'.format(ctx.env.BUILD_DIR)
+        ctx.pbl_program(source=sources, target=app_elf)
 
         if build_worker:
-            worker_elf='{}/pebble-worker.elf'.format(ctx.env.BUILD_DIR)
+            worker_elf = '{}/pebble-worker.elf'.format(ctx.env.BUILD_DIR)
             binaries.append({'platform': p, 'app_elf': app_elf, 'worker_elf': worker_elf})
-            ctx.pbl_worker(source=ctx.path.ant_glob('worker_src/**/*.c'),
-            target=worker_elf)
+            ctx.pbl_worker(source=ctx.path.ant_glob('worker_src/**/*.c') + ctx.path.ant_glob('worker_src/**/*.cpp'),
+                           target=worker_elf)
         else:
             binaries.append({'platform': p, 'app_elf': app_elf})
 

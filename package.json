@@ -1,6 +1,6 @@
 {
-  "version": "3.17.0",
-  "author": "Mattias Backlund",
+  "version": "4.0.0",
+  "author": "Uli Tessel",
   "private": true,
   "dependencies": {},
   "keywords": [
@@ -19,7 +19,7 @@
       ]
     },
     "projectType": "native",
-    "uuid": "8873f5fc-ec3c-487a-812b-8de0ae5f7ebe",
+    "uuid": "b471c8e5-be22-45d2-8005-6c86ba7412e3",
     "messageKeys": {
       "KEY_LANGUAGE": 4,
       "KEY_MESSAGE_TIME": 6,
@@ -29,25 +29,22 @@
       "KEY_OFFSET": 5,
       "KEY_BOLD_TEXT": 3,
       "KEY_GESTURE": 7,
-      "KEY_BT_NOTIFICATION": 8
+      "KEY_BT_NOTIFICATION": 8,
+      "KEY_ANIMATION_DURATION": 9
     },
     "enableMultiJS": false,
-    "displayName": "Fuzzy Text Watch Plus",
+    "displayName": "SDF Fuzzy Text",
     "watchapp": {
       "onlyShownOnCommunication": false,
       "hiddenApp": false,
       "watchface": true
     },
     "targetPlatforms": [
-      "aplite",
-      "basalt",
-      "chalk",
-      "diorite",
       "emery"
     ],
     "capabilities": [
       "configurable"
     ]
   },
-  "name": "Fuzzy Text Plus"
+  "name": "SDF Fuzzy Text"
 }

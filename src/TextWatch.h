@@ -1,3 +1,7 @@
+#pragma once
+
+#include <pebble.h>
+
 // Make watch switch time every 5 seconds
 #define DEBUG 0
 
@@ -11,42 +15,15 @@
 #define KEY_MESSAGE_TIME 6
 #define KEY_GESTURE 7
 #define KEY_BT_NOTIFICATION 8
-
-// Max number of characters in a line
-#define LINE_LENGTH 9
-// How many characters must be available in a line to consider adding a second word
-#define LINE_APPEND_MARGIN 2
-// We can add a new word to a line if it is no longer than this
-#define LINE_APPEND_LIMIT (LINE_LENGTH - LINE_APPEND_MARGIN + 1)
+#define KEY_ANIMATION_DURATION 9
 
 // Max number of lines
 #define NUM_LINES 4
 // Size of text buffer for lines
-#define BUFFER_SIZE (LINE_LENGTH + 2)
-// Vertical distance in pixels between lines
-#define ROW_HEIGHT 50
-// Vertical distance in pixels between lines
-#define ROW_OFFSET 45
-// Vertical distance in pixels between small lines
-#define ROW_OFFSET_SMALL 30
-
-// Pull top line up by this many pixels
-#define TOP_MARGIN 10
-// Pull line above small line up by this many pixels
-#define TOP_MARGIN_SMALL 5
-
-// Text alignment. Can be GTextAlignmentLeft, GTextAlignmentCenter or GTextAlignmentRight
-#define TEXT_ALIGN GTextAlignmentCenter
-
-// The time it takes for a layer to slide in or out.
-#define ANIMATION_DURATION 300
-// Delay between the layers animations, from top to bottom
-#define ANIMATION_STAGGER_TIME 150
-// Delay from the start of the current layer going out until the next layer slides in
-#define ANIMATION_OUT_IN_DELAY 100
+#define BUFFER_SIZE 32
 
 // How long to show messages, in seconds
-#define BT_LOST_DISPLAY_TIME 12
+#define BT_LOST_DISPLAY_TIME 7
 
 // How long to wait in seconds between connection lost notification and displaying message
 #define CONNECTION_LOST_MARGIN 2
@@ -62,41 +39,19 @@
 #define BT_NOTIFY_NO_VIBE  1
 #define BT_NOTIFY_ON       2
 
-
-// Data structures
-typedef struct {
-	TextLayer *currentLayer;
-	TextLayer *nextLayer;
-	char lineStr1[BUFFER_SIZE];
-	char lineStr2[BUFFER_SIZE];
-	PropertyAnimation *animation1;
-	PropertyAnimation *animation2;
-} Line;
-
 // Functions
-void animationStoppedHandler(struct Animation *animation, bool finished, void *context);
-void makeAnimationsForLayer(Line *line, int delay);
-void updateLayerText(TextLayer* layer, char* text);
-void updateLineTo(Line *line, char *value, int delay);
-bool needToUpdateLine(Line *line, char *nextValue);
-void configureBoldLayer(TextLayer *textlayer);
-void configureLightLayer(TextLayer *textlayer);
-int configureLayersForText(char text[NUM_LINES][BUFFER_SIZE], char format[]);
-void string_to_lines(char *str, char lines[NUM_LINES][BUFFER_SIZE], char format[]);
-void time_to_lines(int hours, int minutes, char lines[NUM_LINES][BUFFER_SIZE], char format[]);
-void display_message(char *message, int displayTime);
+int configureLayersForText(char text[NUM_LINES][BUFFER_SIZE], char format[], float scales[NUM_LINES]);
+void display_date_time();
 void display_time(struct tm *t, bool force);
-void checkConnection(time_t *now);
+void check_connection(time_t *now);
 void handle_tick(struct tm *tick_time, TimeUnits units_changed);
-void init_line(Line* line);
 struct tm *get_localtime();
 void refresh_time();
 void set_offset(int offset);
-void set_message_time(int mTime);
+void set_animation_duration(uint32_t duration_ms);
 void inbox_received_handler(DictionaryIterator *iter, void *context);
 void notify_bt_lost();
 void bt_handler(bool connected);
 void readPersistedState();
 void handle_init();
-void destroy_line(Line* line);
 void handle_deinit();

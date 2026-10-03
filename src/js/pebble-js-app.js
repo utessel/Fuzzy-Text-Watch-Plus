@@ -7,7 +7,6 @@ Pebble.addEventListener('ready', function() {
 
 Pebble.addEventListener('showConfiguration', function() {
   var url = 'https://utessel.github.io/Fuzzy-Text-Watch-Plus/config/index.html?v=' + version;
-  //var url = 'file:///Users/mattias/gitroot/Fuzzy-Text-watch-Plus/config/index.html?v=' + version;
 
   if (!hasColor()) { // Black n white
     url = url + "&bw";
@@ -55,14 +54,15 @@ Pebble.addEventListener('webviewclosed', function(e) {
   var offset = configData['offset'];
   if (offset !== undefined) dict['KEY_OFFSET'] = parseInt(offset);
 
-  var message_time = configData['message_time'];
-  if (message_time !== undefined) dict['KEY_MESSAGE_TIME'] = parseInt(message_time);
 
   var gesture = configData['gesture'];
   if (gesture !== undefined) dict['KEY_GESTURE'] = parseInt(gesture);
 
   var bt_notification = configData['bt_notification'];
   if (bt_notification !== undefined) dict['KEY_BT_NOTIFICATION'] = parseInt(bt_notification);
+
+  var anim_duration = configData['anim_duration'];
+  if (anim_duration !== undefined) dict['KEY_ANIMATION_DURATION'] = parseInt(anim_duration);
 
   // Send to watchapp
   Pebble.sendAppMessage(dict, function() {

@@ -16,13 +16,7 @@
         text-align: center;
       }
 
-      .bw-config,
-      .color-config,
-      .language-config,
-      .offset-config,
-      .message-time-config,
-      .gesture-config,
-      .bt-lost-config
+      .bw-config
       {
         display: none;
       }
@@ -164,20 +158,23 @@
       </div>
     </div>
 
-    <div class='item-container message-time-config'>
+
+    <div class='item-container anim-config'>
+      <div class='item-container-header'>Animation</div>
       <div class='item-container-content'>
         <label class='item'>
-            Greeting display time
-            <select id='message_time_choice' class='item-select'>
-            <option value="0">off</option>
-            <option value="2">2 seconds</option>
-            <option value="3" selected>3 seconds</option>
-            <option value="4">4 seconds</option>
+          Animation duration
+          <select id='anim_duration_choice' class='item-select'>
+            <option value="300">300 ms (Sehr schnell / Stromsparend)</option>
+            <option value="500">500 ms (Schnell)</option>
+            <option value="700" selected>700 ms (Standard)</option>
+            <option value="1000">1000 ms (Gemächlich)</option>
+            <option value="1400">1400 ms (Demo / Langsam)</option>
           </select>
         </label>
       </div>
       <div class='item-container-footer'>
-        When the watchface is started a greeting message is diplayed. This setting decides for how long.
+        Dauer der Zoom- und Dreh-Animation beim Wechsel von Uhrzeit oder Datum. Kürzere Zeiten sparen Akku.
       </div>
     </div>
 
@@ -199,9 +196,9 @@
     var boldColorPicker = document.getElementById('bold_color_picker');
     var languageChoice = document.getElementById('language_choice');
     var offsetChoice = document.getElementById('offset_choice');
-    var messageTime = document.getElementById('message_time_choice');
     var gesture = document.getElementById('gesture_choice');
     var btLostNotification = document.getElementById('bt_choice');
+    var animDuration = document.getElementById('anim_duration_choice');
 
     var options = {
       'inverse_colors': inverseColorCheckbox.checked,
@@ -210,9 +207,9 @@
       'bold_color': boldColorPicker.value,
       'language': languageChoice.value,
       'offset': offsetChoice.value,
-      'message_time': messageTime.value,
       'gesture': gesture.value,
-      'bt_notification': btLostNotification.value
+      'bt_notification': btLostNotification.value,
+      'anim_duration': animDuration ? parseInt(animDuration.value) : 700
     };
 
     // Save for next launch
@@ -222,9 +219,9 @@
     localStorage['bold_color'] = options['bold_color'];
     localStorage['language'] = options['language'];
     localStorage['offset'] = options['offset'];
-    localStorage['message_time'] = options['message_time'];
     localStorage['gesture'] = options['gesture'];
     localStorage['bt_notification'] = options['bt_notification'];
+    localStorage['anim_duration'] = options['anim_duration'];
 
     console.log('Got options: ' + JSON.stringify(options));
     return options;
@@ -258,55 +255,30 @@
     var boldColorPicker = document.getElementById('bold_color_picker');
     var languageChoice = document.getElementById('language_choice');
     var offsetChoice = document.getElementById('offset_choice');
-    var messageTime = document.getElementById('message_time_choice');
     var gesture = document.getElementById('gesture_choice');
     var btLostNotification = document.getElementById('bt_choice');
 
-    var selected_configs = [];
-    var available_languages = {};
+    var available_languages = {
+      "Svenska": 1,
+      "English": 2,
+      "Norsk": 3,
+      "Nederlands": 4,
+      "Italiano": 5,
+      "Español": 6,
+      "Deutsch (O)": 7,
+      "Deutsch (w)": 8
+    };
 
     // Setup black n´ white or color options
     if (getQueryParam("bw")) {
-      Array.prototype.push.apply(selected_configs, document.getElementsByClassName("bw-config"));
-    } else {
-      Array.prototype.push.apply(selected_configs, document.getElementsByClassName("color-config"));
-    }
-
-    // Add option and language avabilities depending on client version
-    var version = getQueryParam("v");
-    if (version > 0) {
-      if (version >= 33) {
-        Array.prototype.push.apply(selected_configs, document.getElementsByClassName("language-config"));        
-        available_languages["Svenska"] = 1;
-        available_languages["English"] = 2;
-        available_languages["Norsk"] = 3;
+      var bwElements = document.getElementsByClassName("bw-config");
+      for (var i = 0; i < bwElements.length; i++) {
+        bwElements[i].style.display = "block";
       }
-      if (version >= 34) {
-        Array.prototype.push.apply(selected_configs, document.getElementsByClassName("offset-config"));        
-        available_languages["Nederlands"] = 4;
+      var colorElements = document.getElementsByClassName("color-config");
+      for (var i = 0; i < colorElements.length; i++) {
+        colorElements[i].style.display = "none";
       }
-      if (version >= 35) {
-        available_languages["Italiano"] = 5;
-      }
-      if (version >= 38) {
-        available_languages["Español"] = 6;
-      }
-      if (version >= 40) {
-        Array.prototype.push.apply(selected_configs, document.getElementsByClassName("message-time-config"));
-      }
-      if (version >= 41) {
-        available_languages["Deutsch (O)"] = 7;
-        available_languages["Deutsch (w)"] = 8;
-      }
-      if (version >= 42) {
-        Array.prototype.push.apply(selected_configs, document.getElementsByClassName("gesture-config"));
-        Array.prototype.push.apply(selected_configs, document.getElementsByClassName("bt-lost-config"));
-      }
-    }
-
-    // Make all available options visible
-    for (var i = 0; i < selected_configs.length; i++) {
-      selected_configs[i].style.display = "block";
     }
 
     // Add all languages sorted by name
@@ -355,9 +327,9 @@
 
     // Other settings
     offsetChoice.value = getOption('offset', 180);
-    messageTime.value = getOption('message_time', 3);
     gesture.value = getOption('gesture', 4);
     btLostNotification.value = getOption('bt_notification', 2);
+    document.getElementById('anim_duration_choice').value = getOption('anim_duration', 700);
 
     function updateColorPreviews() {
       if (window.$) {

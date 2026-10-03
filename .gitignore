@@ -7,3 +7,9 @@ build
 wscript
 
 node_modules/
+*.png
+
+# Generated SDF Font files
+SDFLib/sdf_font.c
+SDFLib/sdf_font.h
+.venv/
